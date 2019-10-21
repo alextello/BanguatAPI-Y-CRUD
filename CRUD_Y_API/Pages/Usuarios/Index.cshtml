@@ -1,0 +1,59 @@
+﻿@page
+@model CRUD_Y_API.Pages.Usuarios.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<a class="btn btn-info mt-5 mb-5 float-right" asp-page="/Usuarios/Create"><i class="fa fa-user-plus"></i> Registrar nuevo usuario</a>
+
+@if (Model.Usuarios.Count == 0)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>No hay estudiantes registrados!</strong>
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table mt-3 pt-3">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        @Html.DisplayNameFor(s => s.Usuarios[0].Nombres)
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayNameFor(s => s.Usuarios[0].Apellidos)
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayNameFor(s => s.Usuarios[0].Curso)
+                    </th>
+                    <th class="text-center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usr in Model.Usuarios)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @usr.Nombres
+                        </td>
+                        <td class="text-center">
+                            @usr.Apellidos
+                        </td>
+                        <td class="text-center">
+                            @usr.Curso
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-sm btn-outline-primary" asp-page="/Usuarios/Edit" asp-route-id="@usr.Id"><i class="fa fa-edit"></i>Editar</a>
+                            <form style="display: inline" method="post" onsubmit="return confirm('Esta seguro de eliminar el registro?');">
+                                <button class="btn btn-sm btn-outline-danger" asp-page="/Usuarios/Eliminar" asp-route-id="@usr.Id"><i class="fa fa-eraser"></i> Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,12 @@
+﻿@page
+@model CRUD_Y_API.Pages.Usuarios.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+<form role="form" method="post">
+    <partial name="_FormUsuario" model="Model.Usuario" />
+    <button type="submit" class="btn btn-primary float-right">Crear</button>
+</form>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

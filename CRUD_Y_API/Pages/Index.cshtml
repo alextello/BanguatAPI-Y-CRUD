@@ -1,0 +1,12 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var Fecha = DateTime.Now;
+}
+
+<div class="text-center">
+    <p class="display-4">Banguat</p>
+    <h2 class="font-weight-light">Valor del dolar: Q @Model.Referencia</h2>
+    <h4>@Fecha.ToString("dd/MM/yyyy")</h4>
+</div>
